@@ -11,7 +11,7 @@ This repository contains the source for my personal portfolio site — a scroll-
 - **Portfolio:** [manav-portfolio.onrender.com](https://manav-portfolio.onrender.com)
 - **GitHub:** [github.com/Manav57](https://github.com/Manav57)
 - **LinkedIn:** [linkedin.com/in/manav-patidar-44956a312](https://www.linkedin.com/in/manav-patidar-44956a312/)
-- **Email:** [mp3122@srmist.edu.in](mailto:mp3122@srmist.edu.in)
+- **Email:** [manavpatidar2311@gmail.com](mailto:manavpatidar2311@gmail.com)
 
 ## 🛠 Skills
 
