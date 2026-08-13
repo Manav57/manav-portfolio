@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   MANAV PATIDAR — Portfolio engine
+   MANAV — Portfolio engine
    Zero dependencies. Canvas scroll engine with rAF + lerp.
 
    Frame mode:    drops numbered JPGs into /frames/ (frame_0001.jpg
@@ -17,7 +17,7 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
 
-  const MAGENTA = "#ff2d78";
+  const MAGENTA = "#ff2e55";
   const CRIMSON = "#ff1f3d";
   const VIOLET = "#8b5cf6";
   const WHITE = "#ffffff";
@@ -66,9 +66,9 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const g = ctx.createLinearGradient(0, 0, 0, vh);
-    g.addColorStop(0, "#060609");
-    g.addColorStop(0.55, "#0a0a12");
-    g.addColorStop(1, "#08080d");
+    g.addColorStop(0, "#050505");
+    g.addColorStop(0.55, "#0a0a0c");
+    g.addColorStop(1, "#08080b");
     bgGrad = g;
   }
 
@@ -93,8 +93,10 @@
   }
 
   const loaderSub = document.getElementById("loaderSub");
+  const loaderBar = document.getElementById("loaderBar");
   function reportFrames(loaded, total) {
     if (loaderSub) loaderSub.textContent = `RENDERING FRAMES ${loaded}/${total}`;
+    if (loaderBar) loaderBar.style.width = total ? `${Math.round((loaded / total) * 100)}%` : "100%";
   }
 
   async function loadFrames() {
@@ -240,7 +242,7 @@
     const scale = Math.max(vw / (img.width * zoom), vh / (img.height * zoom));
     const w = img.width * zoom * scale;
     const h = img.height * zoom * scale;
-    ctx.fillStyle = "#07070b";
+    ctx.fillStyle = "#050505";
     ctx.fillRect(0, 0, vw, vh);
     ctx.drawImage(img, (vw - w) / 2, (vh - h) / 2, w, h);
   }
@@ -304,11 +306,13 @@
     window.scrollTo({ top: 0, behavior: "smooth" })
   );
 
-  // active section highlighting
-  const sections = ["hero", "about", "skills", "projects", "education", "contact"]
+  // active section highlighting (only on pages that contain the sections)
+  const sections = ["hero", "about", "projects", "workflow", "palette", "contact"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
-  const links = Array.from(navLinks.querySelectorAll("a"));
+  const links = Array.from(navLinks.querySelectorAll("a")).filter((l) =>
+    l.getAttribute("href") && l.getAttribute("href").startsWith("#")
+  );
   const sectIO = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
       if (en.isIntersecting) {
@@ -321,9 +325,19 @@
   sections.forEach((s) => sectIO.observe(s));
 
   // loader — then fire scroll-reveal so hero animations play after the fade
-  const hideLoader = () => document.body.classList.add("loaded");
+  const hideLoader = () => {
+    document.body.classList.add("loaded");
+    if (loaderBar) loaderBar.style.width = "100%";
+  };
   window.addEventListener("load", () => setTimeout(hideLoader, 400));
   setTimeout(hideLoader, 3200); // safety net
+  // loader progress ticker while frames load (feels alive even with no frames)
+  let fakeP = 0;
+  const fakeTimer = setInterval(() => {
+    if (document.body.classList.contains("loaded")) { clearInterval(fakeTimer); return; }
+    fakeP = Math.min(0.92, fakeP + 0.05 + Math.random() * 0.08);
+    if (loaderBar) loaderBar.style.width = `${Math.round(fakeP * 100)}%`;
+  }, 240);
 
   // scroll reveal
   const revealIO = new IntersectionObserver((entries) => {
@@ -345,6 +359,57 @@
   };
   window.addEventListener("load", () => setTimeout(initReveals, 650));
   setTimeout(initReveals, 3600); // safety net
+
+  /* ───────────────────────── works filter ───────────────────────── */
+
+  const filters = Array.from(document.querySelectorAll(".filter"));
+  const cards = Array.from(document.querySelectorAll(".work-card"));
+  if (filters.length && cards.length) {
+    filters.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filters.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const f = btn.dataset.filter;
+        cards.forEach((card) => {
+          const show = f === "all" || card.dataset.cat === f;
+          card.style.display = show ? "" : "none";
+          if (show) requestAnimationFrame(() => card.classList.add("visible"));
+        });
+      });
+    });
+  }
+
+  /* ───────────────────────── contact form ───────────────────────── */
+
+  const form = document.getElementById("contactForm");
+  const formNote = document.getElementById("formNote");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const email = form.email.value.trim() || "manavpatidar2311@gmail.com";
+      const biz = form.business_age.value.trim();
+      const challenge = form.challenge.value.trim();
+      const revenue = form.revenue.value.trim();
+
+      if (!name || !phone) {
+        formNote.textContent = "Please fill in your name and number.";
+        formNote.className = "form-note err";
+        return;
+      }
+
+      const subject = encodeURIComponent(`Consultation request from ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nNumber: ${phone}\nEmail: ${email}\n` +
+        `In business for: ${biz || "-"}\nBiggest challenge: ${challenge || "-"}\n` +
+        `Estimated annual revenue: ${revenue || "-"}`
+      );
+      formNote.textContent = "Opening your email client…";
+      formNote.className = "form-note ok";
+      window.location.href = `mailto:manavpatidar2311@gmail.com?subject=${subject}&body=${body}`;
+    });
+  }
 
   /* ───────────────────────── init ───────────────────────── */
 
