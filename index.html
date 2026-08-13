@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manav Patidar — AI/ML Engineer · Agentic AI Systems</title>
+  <meta name="description" content="Manav Patidar — AI/ML Engineer specializing in Agentic AI systems, LangGraph multi-agent orchestration and full-stack AI. Shipping production-oriented AI." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <noscript><style>.reveal{opacity:1;transform:none}.loader{display:none}</style></noscript>
+</head>
+<body>
+
+  <!-- ══════════ SCROLL-DRIVEN CANVAS BACKGROUND ══════════ -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ══════════ LOADER ══════════ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <span class="loader-brand">MANAV PATIDAR</span>
+      <span class="loader-sub" id="loaderSub">INITIALIZING SCENE</span>
+      <span class="loader-bar"><span id="loaderBar"></span></span>
+    </div>
+  </div>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <header class="nav" id="nav">
+    <a class="brand" href="#hero">MANAV&nbsp;PATIDAR</a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta" href="#contact">Get in Touch</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="hero-badge reveal">
+            <span class="dot"></span>AI/ML ENGINEER <span class="sep">·</span> AGENTIC AI SYSTEMS <span class="sep">·</span> FULL-STACK AI SPECIALIST
+          </span>
+          <h1 class="hero-name reveal">
+            Manav<br /><span class="grad">Patidar</span>
+          </h1>
+          <p class="hero-tag reveal">“Shipping Production-Oriented AI &amp; Multi-Agent Orchestration”</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#projects">Explore Work</a>
+            <a class="btn btn-ghost" href="#contact">Hire Me</a>
+          </div>
+          <div class="hero-social reveal">
+            <a href="https://github.com/Manav57" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.11 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.47 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.3 12.3 0 0 0 24 12.3C24 5.67 18.63.3 12 .3z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/manav-patidar-44956a312/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.44-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="orbit" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs><path id="orbitPath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" /></defs>
+              <text><textPath href="#orbitPath" xlink:href="#orbitPath" textLength="498" lengthAdjust="spacingAndGlyphs">AI/ML ENGINEER • AGENTIC AI SYSTEMS • FULL-STACK AI •</textPath></text>
+            </svg>
+          </div>
+          <div class="portrait-frame">
+            <img src="assets/portrait.jpg" alt="Portrait of Manav Patidar" width="640" height="800" />
+          </div>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#about" aria-label="Scroll to About">
+        <span class="scroll-mouse"><span></span></span>
+        <span class="scroll-text">SCROLL</span>
+      </a>
+    </section>
+
+    <!-- ══════════ ABOUT ══════════ -->
+    <section class="section" id="about">
+      <div class="container">
+        <p class="section-eyebrow reveal">01 — About</p>
+        <h2 class="section-title reveal">Engineering intelligence <span class="grad">that ships.</span></h2>
+        <div class="about-grid">
+          <p class="about-text reveal">
+            I'm an AI/ML engineer who turns ambitious ideas into production-grade systems. From
+            <strong>multi-agent LangGraph orchestrations</strong> that correct themselves mid-conversation, to
+            <strong>computer-vision interfaces</strong> that respond to a glance, I build end-to-end —
+            model, API, UI, tests, deployment. Every system I ship is validated with automated test suites
+            and built for <strong>zero-downtime deployment</strong>.
+          </p>
+          <div class="about-stats">
+            <div class="stat reveal"><span class="stat-num grad">144+</span><span class="stat-label">passing automated tests</span></div>
+            <div class="stat reveal"><span class="stat-num grad">4-stage</span><span class="stat-label">multi-node agent pipeline</span></div>
+            <div class="stat reveal"><span class="stat-num grad">4</span><span class="stat-label">flagship projects shipped</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SKILLS ══════════ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <p class="section-eyebrow reveal">02 — Skills</p>
+        <h2 class="section-title reveal">A stack built to <span class="grad">orchestrate.</span></h2>
+        <div class="skills-grid">
+          <article class="glass-card reveal">
+            <div class="card-head">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17h-8v-2.3C7.2 13.5 6 11.4 6 9a7 7 0 0 1 6-7zm-2 19h4v1h-4v-1z"/><path d="M12 5a4 4 0 0 0-4 4"/></svg>
+              </span>
+              <h3>AI/ML &amp; Agentic</h3>
+            </div>
+            <ul class="card-points">
+              <li>LangGraph — multi-agent orchestration</li>
+              <li>LLM Integration — Groq, Gemini API</li>
+              <li>Prompt Engineering</li>
+              <li>Computer Vision — OpenCV, MediaPipe</li>
+              <li>NLP &amp; Applied Machine Learning</li>
+            </ul>
+            <div class="pills">
+              <span>LangGraph</span><span>Groq</span><span>Gemini</span><span>OpenCV</span><span>MediaPipe</span><span>NLP</span>
+            </div>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-head">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm2 4v8h2V8H6zm4 0v8h2V8h-2zm4 0v8h2v-3h2v-2h-2V8h-2z"/></svg>
+              </span>
+              <h3>Backend &amp; APIs</h3>
+            </div>
+            <ul class="card-points">
+              <li>Python-first API architecture</li>
+              <li>FastAPI, Flask, Django services</li>
+              <li>REST API design &amp; microservices</li>
+              <li>PostgreSQL &amp; SQLite data modeling</li>
+              <li>Scalable, testable service layers</li>
+            </ul>
+            <div class="pills">
+              <span>Python</span><span>FastAPI</span><span>Flask</span><span>Django</span><span>PostgreSQL</span><span>SQLite</span><span>Microservices</span>
+            </div>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-head">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12 9 7.8 7.6 6.4 2 12l5.6 5.6L9 16.2zm6 0L19.2 12 15 7.8l1.4-1.4L22 12l-5.6 5.6L15 16.2zM13 5l-2 14h2L15 5h-2z"/></svg>
+              </span>
+              <h3>Frontend &amp; Tools</h3>
+            </div>
+            <ul class="card-points">
+              <li>React &amp; Redux state architecture</li>
+              <li>Responsive HTML5/CSS3 interfaces</li>
+              <li>Automated testing — pytest, Vitest</li>
+              <li>Git/GitHub collaboration workflows</li>
+              <li>AWS &amp; CI/CD deployment pipelines</li>
+            </ul>
+            <div class="pills">
+              <span>React</span><span>Redux</span><span>HTML5/CSS3</span><span>Git</span><span>pytest</span><span>Vitest</span><span>AWS</span><span>CI/CD</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PROJECTS ══════════ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="section-eyebrow reveal">03 — Featured Projects</p>
+        <h2 class="section-title reveal">Systems that <span class="grad">think in agents.</span></h2>
+        <div class="projects-grid">
+          <article class="glass-card project-card reveal">
+            <div class="project-top">
+              <span class="project-index">01</span>
+              <span class="project-tag">LangGraph · Agentic</span>
+            </div>
+            <h3>AI-Powered Pharmaceutical Complaint Management System</h3>
+            <ul class="project-highlights">
+              <li>4-stage multi-node LangGraph pipeline for complaint processing</li>
+              <li>Stateful conversational field corrections</li>
+              <li>Automatic model failover logic</li>
+              <li>Verified with 144 passing automated tests</li>
+            </ul>
+            <div class="pills">
+              <span>React</span><span>Redux</span><span>FastAPI</span><span>LangGraph</span><span>Groq</span><span>PostgreSQL</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card reveal">
+            <div class="project-top">
+              <span class="project-index">02</span>
+              <span class="project-tag">Computer Vision</span>
+            </div>
+            <h3>Vision-Based Intelligent Touchless Interface</h3>
+            <ul class="project-highlights">
+              <li>Gesture-controlled holographic interface</li>
+              <li>Real-time virtual element rotation &amp; selection</li>
+              <li>Low-latency hands-free navigation</li>
+            </ul>
+            <div class="pills">
+              <span>Python</span><span>OpenCV</span><span>MediaPipe</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card reveal">
+            <div class="project-top">
+              <span class="project-index">03</span>
+              <span class="project-tag">Multimodal HCI</span>
+            </div>
+            <h3>Multimodal HCI Eye-Tracking System</h3>
+            <ul class="project-highlights">
+              <li>Real-time gaze &amp; blink pattern interpretation</li>
+              <li>Hands-free assistive control</li>
+              <li>Facial landmark-based tracking</li>
+            </ul>
+            <div class="pills">
+              <span>Python</span><span>OpenCV</span><span>Facial Landmarks</span>
+            </div>
+          </article>
+
+          <article class="glass-card project-card reveal">
+            <div class="project-top">
+              <span class="project-index">04</span>
+              <span class="project-tag">Agentic LLM</span>
+            </div>
+            <h3>J.A.R.V.I.S-Mk85 AI Desktop Assistant</h3>
+            <ul class="project-highlights">
+              <li>Self-healing LLM assistant with reactive dashboard</li>
+              <li>Media retrieval &amp; live-code visualization projector mode</li>
+              <li>HTML/CSS reactive UI</li>
+            </ul>
+            <div class="pills">
+              <span>Python</span><span>Gemini API</span><span>Eel</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ EDUCATION ══════════ -->
+    <section class="section" id="education">
+      <div class="container">
+        <p class="section-eyebrow reveal">04 — Education</p>
+        <h2 class="section-title reveal">Foundation in <span class="grad">computer science.</span></h2>
+        <article class="glass-card edu-card reveal">
+          <div class="edu-left">
+            <span class="edu-cap">B.TECH</span>
+            <h3>Computer Science &amp; Engineering</h3>
+            <p>SRM Institute of Science and Technology, Kattankulathur</p>
+          </div>
+          <div class="edu-right">
+            <span class="edu-year">2022 — 2026</span>
+            <span class="edu-status">Expected 2026</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════ FOOTER / CONTACT ══════════ -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <p class="section-eyebrow reveal">05 — Contact</p>
+      <h2 class="footer-title reveal">Let's build something <span class="grad">agentic.</span></h2>
+      <p class="footer-sub reveal">Open to AI/ML &amp; agentic engineering roles, collaborations and ambitious projects.</p>
+      <div class="footer-actions reveal">
+        <a class="btn btn-primary" href="mailto:mp3122@srmist.edu.in">
+          <svg viewBox="0 0 24 24"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v.5l9 6.2 9-6.2V7H3zm0 12h18v-7.4l-9 6.2-9-6.2V19z"/></svg>
+          mp3122@srmist.edu.in
+        </a>
+        <a class="btn btn-ghost" href="tel:+917697177471">
+          <svg viewBox="0 0 24 24"><path d="M7 3h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1.1L9.5 10.8c1.4 2.7 3.7 5 6.4 6.4l2.2-2.2c.3-.3.7-.4 1.1-.3 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C11.6 22 2 12.4 2 4c0-.6.4-1 1-1z"/></svg>
+          +91 76971 77471
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/Manav57" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.11 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.47 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.3 12.3 0 0 0 24 12.3C24 5.67 18.63.3 12 .3z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/manav-patidar-44956a312/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.44-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Manav Patidar</span>
+        <span class="footer-made">Engineered with Canvas · rAF · Lerp</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════ BACK TO TOP ══════════ -->
+  <button class="to-top" id="toTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

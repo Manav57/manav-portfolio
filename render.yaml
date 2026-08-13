@@ -1,0 +1,17 @@
+# ─────────────────────────────────────────────
+# Render blueprint — deploys the Docker web
+# service on the free tier and gives a public
+# URL like https://manav-portfolio.onrender.com
+#
+# Set the repo field to your GitHub repo, e.g.
+#   repo: https://github.com/Manav57/manav-portfolio
+# ─────────────────────────────────────────────
+services:
+  - type: web
+    name: manav-portfolio
+    runtime: docker
+    repo: https://github.com/Manav57/manav-portfolio
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true

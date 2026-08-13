@@ -1,0 +1,8 @@
+services:
+  portfolio:
+    build: .
+    image: manav-portfolio:latest
+    container_name: manav-portfolio
+    ports:
+      - "8081:80"
+    restart: unless-stopped
