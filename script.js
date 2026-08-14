@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
    MANAV — Portfolio engine
-   Zero dependencies. Canvas scroll engine with rAF + lerp.
+   Canvas scroll engine with rAF + lerp, plus GSAP ScrollTrigger
+   pinned-portrait / section-tint effects (graceful when GSAP is absent).
 
    Frame mode:    drops numbered JPGs into /frames/ (frame_0001.jpg
                   ... frame_1200.jpg, or frames/manifest.json with
@@ -100,17 +101,18 @@
   }
 
   async function loadFrames() {
-    // 1) optional manifest — exact frame order, any names
+    // 1) optional manifest — exact frame order, any names.
+    //    If a manifest exists (even an empty one) we trust it and skip probing.
     try {
       const man = await (await fetch("frames/manifest.json", { cache: "no-store" })).json();
-      if (Array.isArray(man.frames) && man.frames.length) {
+      if (Array.isArray(man.frames)) {
         const urls = man.frames.map((f) => "frames/" + f.replace(/^\/+/, ""));
         await Promise.all(urls.map(async (u) => {
           try { frames.push(await loadImage(u)); reportFrames(frames.length, urls.length); } catch (e) { /* skip */ }
         }));
         return frames.length > 0;
       }
-    } catch (e) { /* no manifest */ }
+    } catch (e) { /* no manifest → fall through to probing */ }
 
     // 2) probe a numbered sequence: frame_0001.jpg … (stops after 5 misses)
     const urls = [];
@@ -263,6 +265,8 @@
     current += (target - current) * (1 - Math.exp(-6.5 * dt));
     if (Math.abs(target - current) < 0.00005) current = target;
 
+    updateTint(window.scrollY, now);
+
     if (frameMode) renderFrame(current);
     else renderFallback(current, dt);
 
@@ -280,6 +284,124 @@
     gx += (mx - gx) * 0.085;
     gy += (my - gy) * 0.085;
     glow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
+  }
+
+  /* ───────────────────────── section tint (scroll-linked palette) ───────────────────────── */
+
+  // Cycles the ambient gradient behind the pinned portrait through the site's
+  // palette accents as the user moves between sections.
+  const tintEl = document.getElementById("sectionTint");
+  const TINT_STOPS = [
+    { sel: "#hero",     color: "#ff2e55" },
+    { sel: "#about",    color: "#ff3b30" },
+    { sel: "#projects", color: "#8b5cf6" },
+    { sel: "#workflow", color: "#ff2e55" },
+    { sel: "#palette",  color: "#ff3b30" },
+    { sel: "#contact",  color: "#050505" },
+  ];
+  let tintStops = [];
+  let lastTintCalc = 0;
+
+  function computeTintStops() {
+    tintStops = [];
+    for (const s of TINT_STOPS) {
+      const el = document.querySelector(s.sel);
+      if (!el) continue;
+      const n = parseInt(s.color.slice(1), 16);
+      tintStops.push({ top: el.offsetTop, rgb: [(n >> 16) & 255, (n >> 8) & 255, n & 255] });
+    }
+    tintStops.sort((a, b) => a.top - b.top);
+  }
+
+  function updateTint(y, now) {
+    if (!tintEl || reduceMotion || tintStops.length < 2) return;
+    if (now - lastTintCalc > 400) { computeTintStops(); lastTintCalc = now; }
+
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const f = Math.min(1, Math.max(0, y / max));
+    let rgb;
+
+    if (f <= 0) rgb = tintStops[0].rgb;
+    else if (f >= 1) rgb = tintStops[tintStops.length - 1].rgb;
+    else {
+      let i0 = 0;
+      for (let i = 1; i < tintStops.length; i++) {
+        if (f <= tintStops[i].top / max) break;
+        i0 = i;
+      }
+      if (i0 >= tintStops.length - 1) rgb = tintStops[tintStops.length - 1].rgb;
+      else {
+        const a = tintStops[i0].rgb, b = tintStops[i0 + 1].rgb;
+        const aF = tintStops[i0].top / max, bF = tintStops[i0 + 1].top / max;
+        const t = (f - aF) / Math.max(0.0001, bF - aF);
+        rgb = [
+          Math.round(a[0] + (b[0] - a[0]) * t),
+          Math.round(a[1] + (b[1] - a[1]) * t),
+          Math.round(a[2] + (b[2] - a[2]) * t),
+        ];
+      }
+    }
+    tintEl.style.background = `radial-gradient(ellipse 120% 95% at 50% -8%, rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.26), transparent 62%)`;
+  }
+
+  /* ───────────────────────── pinned portrait (GSAP ScrollTrigger) ───────────────────────── */
+
+  // The hero portrait locks in place (position:fixed) while the hero copy scrolls
+  // away, then the About section slides up and covers it — same-to-same with the
+  // reference. pinSpacing:false keeps the page in normal flow (no layout shift),
+  // and the section-tint continues cycling palette colors behind everything.
+  // Skipped on mobile (<=768px) and for prefers-reduced-motion users.
+  function initScrollFX() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    const small = window.matchMedia("(max-width: 768px)").matches;
+    if (reduceMotion || small) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const heroCopy = document.querySelector(".hero-copy");
+    const portrait = document.querySelector(".portrait-frame");
+    const scrollHint = document.querySelector(".scroll-hint");
+    if (!heroCopy || !portrait) return;
+
+    // Strip the CSS .reveal transition from the portrait AND its wrapper: a
+    // non-identity transform on any ancestor breaks position:fixed (the pin),
+    // and the reveal transition would fight GSAP's scrubbed values. The loader
+    // covers the initial frame, so snapping them visible is invisible.
+    const heroVisual = document.querySelector(".hero-visual");
+    [portrait, heroVisual].forEach((el) => {
+      if (!el) return;
+      el.classList.add("visible");
+      el.style.transition = "none";
+    });
+
+    const pinDist = () => window.innerHeight * 1.3;
+
+    const tl = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: portrait,
+        start: "top 12%",
+        end: () => "+=" + pinDist(),
+        scrub: 0.8,
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    // Copy fades + slides up while the portrait locks; the portrait settles,
+    // then scales down and dims as the About section slides over and covers it.
+    tl.to(heroCopy, { opacity: 0, y: -60, duration: 0.3 }, 0)
+      .to(scrollHint, { opacity: 0 }, 0)
+      .to(portrait, { scale: 0.96, y: -10 }, 0)
+      .to(portrait, { scale: 0.86, opacity: 0.55 }, 0.5)
+      .to(portrait, { opacity: 0.3 }, 1);
+
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
   }
 
   /* ───────────────────────── nav / UI ───────────────────────── */
@@ -379,38 +501,6 @@
     });
   }
 
-  /* ───────────────────────── contact form ───────────────────────── */
-
-  const form = document.getElementById("contactForm");
-  const formNote = document.getElementById("formNote");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = form.name.value.trim();
-      const phone = form.phone.value.trim();
-      const email = form.email.value.trim() || "manavpatidar2311@gmail.com";
-      const biz = form.business_age.value.trim();
-      const challenge = form.challenge.value.trim();
-      const revenue = form.revenue.value.trim();
-
-      if (!name || !phone) {
-        formNote.textContent = "Please fill in your name and number.";
-        formNote.className = "form-note err";
-        return;
-      }
-
-      const subject = encodeURIComponent(`Consultation request from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nNumber: ${phone}\nEmail: ${email}\n` +
-        `In business for: ${biz || "-"}\nBiggest challenge: ${challenge || "-"}\n` +
-        `Estimated annual revenue: ${revenue || "-"}`
-      );
-      formNote.textContent = "Opening your email client…";
-      formNote.className = "form-note ok";
-      window.location.href = `mailto:manavpatidar2311@gmail.com?subject=${subject}&body=${body}`;
-    });
-  }
-
   /* ───────────────────────── init ───────────────────────── */
 
   window.addEventListener("resize", resize);
@@ -418,6 +508,8 @@
 
   resize();
   buildGalaxy();
+  computeTintStops();
+  initScrollFX();
 
   // attach glow sprites to particles
   sprites = {

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — MANAV · Creative Director &amp; Full Stack Developer</title>
-  <meta name="description" content="Selected works by MANAV — product design, web & motion, and cybersecurity systems built end to end." />
+  <title>Projects — MANAV · AI Agent Developer</title>
+  <meta name="description" content="Selected works by MANAV — autonomous agents, computer-vision interfaces and multimodal AI systems built end to end." />
   <meta name="theme-color" content="#050505" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23050505'/%3E%3Ccircle cx='50' cy='50' r='38' fill='none' stroke='%23ff2e55' stroke-width='9'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23ff2e55'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,6 +17,7 @@
 
   <!-- ══════════ SCROLL-DRIVEN CANVAS BACKGROUND ══════════ -->
   <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="section-tint" id="sectionTint" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
   <div class="scanlines" aria-hidden="true"></div>
   <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
@@ -42,70 +44,89 @@
     <section class="section page-hero" id="top">
       <div class="container">
         <p class="section-eyebrow reveal">Selected Works</p>
-        <h1 class="section-title reveal">Projects that <span class="grad">ship.</span></h1>
-        <p class="page-sub reveal">Four flagship systems — designed, built, tested and deployed end to end.</p>
+        <h1 class="section-title reveal">Systems that <span class="grad">ship.</span></h1>
+        <p class="page-sub reveal">Five flagship systems — designed, built, tested and deployed end to end.</p>
       </div>
     </section>
 
     <!-- ══════════ PROJECT SHOWCASE ══════════ -->
     <section class="section">
       <div class="container showcase-grid">
-        <article class="glass-card showcase-card reveal" style="--ambient:#ff2e55">
+        <a class="glass-card showcase-card reveal" style="--ambient:#ff2e55" href="https://github.com/Manav57/-Multimodal-Human-Computer-Interaction-System-Using-Eye-Tracking-and-Voice-Commands" target="_blank" rel="noopener">
           <div class="showcase-head">
             <span class="project-index">01</span>
-            <span class="project-tag">LangGraph · Agentic</span>
-          </div>
-          <h2>AI-Powered Pharmaceutical Complaint Management System</h2>
-          <ul class="project-highlights">
-            <li>4-stage multi-node LangGraph pipeline for complaint processing</li>
-            <li>Stateful conversational field corrections</li>
-            <li>Automatic model failover logic</li>
-            <li>Verified with 144 passing automated tests</li>
-          </ul>
-          <div class="pills"><span>React</span><span>Redux</span><span>FastAPI</span><span>LangGraph</span><span>Groq</span><span>PostgreSQL</span></div>
-        </article>
-
-        <article class="glass-card showcase-card reveal" style="--ambient:#ff8a3d">
-          <div class="showcase-head">
-            <span class="project-index">02</span>
             <span class="project-tag">Computer Vision</span>
           </div>
-          <h2>Vision-Based Intelligent Touchless Interface</h2>
+          <h2>Multimodal HCI — Eye-Tracking &amp; Voice Commands</h2>
           <ul class="project-highlights">
-            <li>Gesture-controlled holographic interface</li>
-            <li>Real-time virtual element rotation &amp; selection</li>
-            <li>Low-latency hands-free navigation</li>
+            <li>Hands-free cursor control from dual-eye pupil tracking</li>
+            <li>MediaPipe Iris Mesh with custom moving-average smoothing</li>
+            <li>Voice command layer for multimodal interaction</li>
           </ul>
-          <div class="pills"><span>Python</span><span>OpenCV</span><span>MediaPipe</span></div>
-        </article>
+          <div class="pills"><span>Python</span><span>MediaPipe</span><span>Computer Vision</span></div>
+          <span class="work-link">View on GitHub →</span>
+        </a>
 
-        <article class="glass-card showcase-card reveal" style="--ambient:#ff3b30">
+        <a class="glass-card showcase-card reveal" style="--ambient:#8b5cf6" href="https://github.com/Manav57/ai-stock-finder" target="_blank" rel="noopener">
+          <div class="showcase-head">
+            <span class="project-index">02</span>
+            <span class="project-tag">ML · LLM Reasoning</span>
+          </div>
+          <h2>AI Stock Finder</h2>
+          <ul class="project-highlights">
+            <li>ML-based screening of the market</li>
+            <li>ChatGPT–Gemini reasoning over candidates</li>
+            <li>Explanations surfaced alongside picks</li>
+          </ul>
+          <div class="pills"><span>Python</span><span>ML</span><span>LLM Reasoning</span></div>
+          <span class="work-link">View on GitHub →</span>
+        </a>
+
+        <a class="glass-card showcase-card reveal" style="--ambient:#ff8a3d" href="https://github.com/Manav57/complaint-system" target="_blank" rel="noopener">
           <div class="showcase-head">
             <span class="project-index">03</span>
-            <span class="project-tag">Multimodal HCI</span>
+            <span class="project-tag">LangGraph · Agentic</span>
           </div>
-          <h2>Multimodal HCI Eye-Tracking System</h2>
+          <h2>Pharma Complaint Intelligence System</h2>
           <ul class="project-highlights">
-            <li>Real-time gaze &amp; blink pattern interpretation</li>
-            <li>Hands-free assistive control</li>
-            <li>Facial landmark-based tracking</li>
+            <li>Multi-agent LangGraph pipeline for complaint processing</li>
+            <li>React + Redux frontend, FastAPI backend</li>
+            <li>Groq-powered with SQLite fallback</li>
+            <li>Validated with an automated pytest suite over the agent workflows and API</li>
           </ul>
-          <div class="pills"><span>Python</span><span>OpenCV</span><span>Facial Landmarks</span></div>
-        </article>
+          <div class="pills"><span>React</span><span>Redux</span><span>FastAPI</span><span>LangGraph</span><span>Groq</span></div>
+          <span class="work-link">View on GitHub →</span>
+        </a>
 
-        <article class="glass-card showcase-card reveal" style="--ambient:#ff1f3d">
+        <a class="glass-card showcase-card reveal" style="--ambient:#ff3b30" href="https://github.com/Manav57/J.A.R.V.I.S-Mk85-Python" target="_blank" rel="noopener">
           <div class="showcase-head">
             <span class="project-index">04</span>
             <span class="project-tag">Agentic LLM</span>
           </div>
-          <h2>J.A.R.V.I.S-Mk85 AI Desktop Assistant</h2>
+          <h2>J.A.R.V.I.S Mk85 — AI Desktop Assistant</h2>
           <ul class="project-highlights">
-            <li>Self-healing LLM assistant with reactive dashboard</li>
-            <li>Media retrieval &amp; live-code visualization projector mode</li>
-            <li>Reactive UI built with HTML/CSS</li>
+            <li>Self-healing voice assistant with holographic GUI</li>
+            <li>Powered by Python and Google Gemini AI</li>
+            <li>Reactive, futuristic interface</li>
           </ul>
-          <div class="pills"><span>Python</span><span>Gemini API</span><span>Eel</span></div>
-        </article>
+          <div class="pills"><span>Python</span><span>Gemini API</span><span>Voice Assistant</span></div>
+          <span class="work-link">View on GitHub →</span>
+        </a>
+
+        <a class="glass-card showcase-card reveal" style="--ambient:#ff1f3d" href="https://github.com/Manav57/Vision-Based-Intelligent-Touchless-Interface-for-Smart-Systems" target="_blank" rel="noopener">
+          <div class="showcase-head">
+            <span class="project-index">05</span>
+            <span class="project-tag">Computer Vision</span>
+          </div>
+          <h2>Vision-Based Touchless Interface</h2>
+          <ul class="project-highlights">
+            <li>Build, rotate and scale 3D voxel structures with hand gestures</li>
+            <li>Real-time tracking via MediaPipe</li>
+            <li>Rendered live with Three.js</li>
+          </ul>
+          <div class="pills"><span>Three.js</span><span>MediaPipe</span><span>Hand Tracking</span></div>
+          <span class="work-link">View on GitHub →</span>
+        </a>
       </div>
     </section>
   </main>
@@ -115,7 +136,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <span class="brand">MANAV</span>
-        <p>Creative Director &amp; Full Stack Developer. Building digital experiences that scale — from brand strategy to production deployment.</p>
+        <p>AI Agent Developer. Building autonomous agents, computer-vision interfaces and multimodal AI systems — from idea to production deployment.</p>
         <p class="footer-copy">© 2026 Manav Patidar. All rights reserved.</p>
       </div>
       <div class="footer-col">
@@ -146,6 +167,8 @@
     </div>
   </footer>
 
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

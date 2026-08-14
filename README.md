@@ -1,6 +1,6 @@
 # Manav Patidar
 
-**AI/ML Engineer · Agentic AI Systems · Full-Stack AI Specialist**
+**AI Agent Developer · Agentic AI Systems · Computer Vision & Multimodal AI**
 
 I'm an AI/ML engineer who turns ambitious ideas into production-grade systems. From multi-agent LangGraph orchestrations that correct themselves mid-conversation, to computer-vision interfaces that respond to a glance, I build end-to-end — model, API, UI, tests, deployment. Every system I ship is validated with automated test suites and built for zero-downtime deployment.
 
